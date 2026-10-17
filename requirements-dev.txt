@@ -1,0 +1,5 @@
+# Extra packages for running tests and for the later model stages.
+pytest>=8.0
+matplotlib>=3.8
+scikit-learn>=1.4
+torch>=2.2

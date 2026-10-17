@@ -1,7 +1,7 @@
 """Catalogue explorer (Streamlit).
 
 Run from the project folder:
-    streamlit run app/app.py
+    streamlit run app.py
 
 It shows the downloaded USGS catalogue: counts, magnitude types, rough
 completeness and an epicentre map. It never creates data. If no catalogue
@@ -17,14 +17,14 @@ import streamlit as st
 
 
 def _find_root() -> Path | None:
-    """Find the project folder (the one holding src/ and config.yaml).
+    """Find the project folder (the one holding common.py and config.yaml).
 
-    Works whether this file is at app/app.py or at the top of the repo,
-    so it also runs on Streamlit Community Cloud.
+    All project files sit together at the top level, so this also works on
+    Streamlit Community Cloud.
     """
     here = Path(__file__).resolve().parent
     for cand in (here, *here.parents):
-        if (cand / "src" / "common.py").exists() and (cand / "config.yaml").exists():
+        if (cand / "common.py").exists() and (cand / "config.yaml").exists():
             return cand
     return None
 
@@ -32,17 +32,17 @@ def _find_root() -> Path | None:
 ROOT = _find_root()
 if ROOT is None:
     st.error(
-        "Cannot find the project files. The folders `src/` and the file `config.yaml` must be "
-        "uploaded next to this app. Upload the whole project folder, not only app.py."
+        "Cannot find the project files. `common.py` and `config.yaml` must be "
+        "uploaded in the same place as app.py. Upload all the files, not only app.py."
     )
     st.stop()
 sys.path.insert(0, str(ROOT))
 
 import pandas as pd  # noqa: E402
 
-from src.common import load_config, resolve_path  # noqa: E402
-from src.download_catalogue import CatalogueError, parse_csv_text  # noqa: E402
-from src.explore import (  # noqa: E402
+from common import load_config, resolve_path  # noqa: E402
+from download_catalogue import CatalogueError, parse_csv_text  # noqa: E402
+from explore import (  # noqa: E402
     completeness_table,
     decade_type_table,
     events_per_year,
@@ -90,7 +90,7 @@ with st.expander("Get the data (download from USGS)", expanded=text is None):
     if st.button("Download from USGS now"):
         with st.spinner("Downloading..."):
             res = subprocess.run(
-                [sys.executable, "-m", "src.download_catalogue", "--config", "config.yaml"],
+                [sys.executable, "download_catalogue.py", "--config", "config.yaml"],
                 cwd=ROOT, capture_output=True, text=True,
             )
         st.code((res.stdout + res.stderr)[-4000:] or "(no output)")

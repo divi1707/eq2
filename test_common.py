@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from src.common import (
+from common import (
     format_fdsn_time,
     load_config,
     make_time_windows,

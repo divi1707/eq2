@@ -9,8 +9,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from src.download_catalogue import detect_columns
-from src.inspect_catalogue import max_curvature_mc
+from download_catalogue import detect_columns
+from inspect_catalogue import max_curvature_mc
 
 
 def prepare_frame(raw: pd.DataFrame) -> tuple[pd.DataFrame, int]:

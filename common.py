@@ -12,7 +12,7 @@ from typing import Any
 import pandas as pd
 import yaml
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parent
 
 
 def get_logger(name: str) -> logging.Logger:

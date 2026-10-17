@@ -11,8 +11,8 @@ import pandas as pd
 import pytest
 import requests
 
-from src.common import load_config
-from src.download_catalogue import (
+from common import load_config
+from download_catalogue import (
     CatalogueError,
     NetworkUnavailable,
     detect_columns,

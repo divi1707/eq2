@@ -6,8 +6,8 @@ code runs and returns sensible structure. It is not an earthquake catalogue.
 import numpy as np
 import pandas as pd
 
-from src.common import load_config
-from src.inspect_catalogue import build_report, max_curvature_mc
+from common import load_config
+from inspect_catalogue import build_report, max_curvature_mc
 
 
 def _toy_frame(n=400, seed=0):

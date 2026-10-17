@@ -5,7 +5,7 @@ step is finalised. It reports facts only: the real column names, missing
 values, magnitude types over time, yearly counts and a rough completeness
 estimate. It does not change or filter any data.
 
-    python -m src.inspect_catalogue --config config.yaml
+    python inspect_catalogue.py --config config.yaml
 """
 from __future__ import annotations
 
@@ -18,8 +18,8 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from src.common import get_logger, load_config, resolve_path
-from src.download_catalogue import detect_columns
+from common import get_logger, load_config, resolve_path
+from download_catalogue import detect_columns
 
 log = get_logger("inspect")
 
@@ -144,7 +144,7 @@ def main(argv: list[str] | None = None) -> int:
     cfg = load_config(args.config)
     csv = Path(args.csv) if args.csv else resolve_path(cfg, "raw_dir") / "usgs_catalogue_raw.csv"
     if not csv.exists():
-        log.error("Raw catalogue not found at %s. Run src.download_catalogue first.", csv)
+        log.error("Raw catalogue not found at %s. Run download_catalogue.py first.", csv)
         return 1
     df = pd.read_csv(csv, low_memory=False)
     if df.empty:

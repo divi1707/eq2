@@ -13,8 +13,8 @@ What this module does
 * If the live service cannot be reached, it can ingest a CSV that you
   downloaded yourself (``--from-csv``). It never invents data.
 
-Run from the project root:
-    python -m src.download_catalogue --config config.yaml
+Run from the folder holding these files:
+    python download_catalogue.py --config config.yaml
 """
 from __future__ import annotations
 
@@ -31,7 +31,7 @@ from typing import Any
 import pandas as pd
 import requests
 
-from src.common import (
+from common import (
     PROJECT_ROOT,
     get_logger,
     load_config,

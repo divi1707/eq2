@@ -1,0 +1,6 @@
+# Light set: stage 1 scripts and the explorer app (also what Streamlit Cloud needs).
+numpy>=1.26
+pandas>=2.1
+requests>=2.31
+pyyaml>=6.0
+streamlit>=1.40

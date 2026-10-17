@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from src.explore import (
+from explore import (
     completeness_table,
     decade_type_table,
     events_per_year,
